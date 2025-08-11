@@ -8,4 +8,3 @@ defaults:
 hierarchy:
   - name: "commons for borgbackup module"
     path: "common.yaml"
-

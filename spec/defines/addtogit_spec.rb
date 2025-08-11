@@ -1,4 +1,4 @@
-
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -11,25 +11,25 @@ describe 'borgbackup::addtogit' do
     it { is_expected.to contain_class('borgbackup::git') }
 
     it {
-      is_expected.to contain_exec('create passphrase file ' + title)
+      is_expected.to contain_exec("create passphrase file #{title}")
         .with_environment(%r{GNUPGHOME=})
     }
 
     it {
-      is_expected.to contain_exec('create key file ' + title)
+      is_expected.to contain_exec("create key file #{title}")
         .with_environment(%r{GNUPGHOME=})
         .with_notify('Exec[commit git repo]')
         .with_provider('shell')
     }
 
     it {
-      is_expected.to contain_exec('reencrypt key file ' + title)
+      is_expected.to contain_exec("reencrypt key file #{title}")
         .with_environment(%r{GNUPGHOME=})
         .with_notify('Exec[commit git repo]')
     }
 
     it {
-      is_expected.to contain_exec('reencrypt passphrase file ' + title)
+      is_expected.to contain_exec("reencrypt passphrase file #{title}")
         .with_environment(%r{GNUPGHOME=})
         .with_notify('Exec[commit git repo]')
     }

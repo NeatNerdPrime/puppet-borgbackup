@@ -1,10 +1,5 @@
 # borg backup puppet module
 
-[![Build Status](https://travis-ci.org/cirrax/puppet-borgbackup.svg?branch=master)](https://travis-ci.org/cirrax/puppet-borgbackup)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/cirrax/borgbackup.svg?style=flat-square)](https://forge.puppetlabs.com/cirrax/borgbackup)
-[![Puppet Forge](https://img.shields.io/puppetforge/dt/cirrax/borgbackup.svg?style=flat-square)](https://forge.puppet.com/cirrax/borgbackup)
-[![Puppet Forge](https://img.shields.io/puppetforge/e/cirrax/borgbackup.svg?style=flat-square)](https://forge.puppet.com/cirrax/borgbackup)
-[![Puppet Forge](https://img.shields.io/puppetforge/f/cirrax/borgbackup.svg?style=flat-square)](https://forge.puppet.com/cirrax/borgbackup)
 
 
 #### Table of Contents
@@ -71,7 +66,7 @@ The hiera configuration for the node:
 
 *Remark:* the initialization of the borg backup repository fails until you configured the ssh key on node-target.
 
-### use a remote git repository 
+### use a remote git repository
 To store the generated passphrase and the keyfile in a secure and automated manner, you can use a git repository.
 Add the following hiera configuration to node-A to fetch and commit to remote gitrepo on node-git:
 
@@ -82,7 +77,7 @@ Add the following hiera configuration to node-A to fetch and commit to remote gi
       -----BEGIN OPENSSH PRIVATE KEY-----
       ...
       -----END OPENSSH PRIVATE KEY-----
-    
+
     # add pgp public keys of users who should be able to decrypt the passphrase and the keyfile.
     # to export use:
     # gpg --export --armor --export-options no-export-attributes,export-minimal ID

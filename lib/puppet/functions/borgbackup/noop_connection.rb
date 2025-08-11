@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'socket'
 
 #
@@ -37,7 +39,7 @@ Puppet::Functions.create_function(:'borgbackup::noop_connection', Puppet::Functi
       noop = Puppet::Parser::Resource::Param.new(
         name: :noop,
         value: noop_value,
-        source: source,
+        source: source
       )
 
       # Adding this default fixes a corner case with resource collectors

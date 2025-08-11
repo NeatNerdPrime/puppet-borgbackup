@@ -1,4 +1,4 @@
-
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -9,11 +9,11 @@ describe 'borgbackup::archive' do
       post_commands: [],
       create_compression: 'lz4',
       create_filter: 'AME',
-      create_options: ['verbose', 'list', 'stats', 'show-rc', 'exclude-caches'],
+      create_options: %w[verbose list stats show-rc exclude-caches],
       create_excludes: [],
       create_includes: [],
       do_prune: true,
-      prune_options: ['list', 'show-rc'],
+      prune_options: %w[list show-rc],
       keep_daily: 7,
       keep_weekly: 4,
       keep_monthly: 6, }
@@ -25,9 +25,9 @@ describe 'borgbackup::archive' do
     it { is_expected.to contain_class('borgbackup') }
 
     it {
-      is_expected.to contain_concat__fragment('borgbackup::archive ' + params[:reponame] + ' create ' + params[:archive_name])
-        .with_target('/etc/borgbackup/repo_' + params[:reponame] + '.sh')
-        .with_order('20-' + title)
+      is_expected.to contain_concat__fragment("borgbackup::archive #{params[:reponame]} create #{params[:archive_name]}")
+        .with_target("/etc/borgbackup/repo_#{params[:reponame]}.sh")
+        .with_order("20-#{title}")
     }
   end
 
@@ -40,16 +40,16 @@ describe 'borgbackup::archive' do
         let :params do
           default_params.merge(
             archive_name: title,
-            reponame: 'myrepo',
+            reponame: 'myrepo'
           )
         end
 
         it_behaves_like 'borgbackup::archive shared examples'
 
         it {
-          is_expected.to contain_concat__fragment('borgbackup::archive ' + params[:reponame] + ' prune ' + params[:archive_name])
-            .with_target('/etc/borgbackup/repo_' + params[:reponame] + '.sh')
-            .with_order('70-' + title)
+          is_expected.to contain_concat__fragment("borgbackup::archive #{params[:reponame]} prune #{params[:archive_name]}")
+            .with_target("/etc/borgbackup/repo_#{params[:reponame]}.sh")
+            .with_order("70-#{title}")
         }
       end
 
@@ -59,13 +59,13 @@ describe 'borgbackup::archive' do
           default_params.merge(
             archive_name: title,
             reponame: 'anotherrepo',
-            do_prune: false,
+            do_prune: false
           )
         end
 
         it_behaves_like 'borgbackup::archive shared examples'
 
-        it { is_expected.not_to contain_concat__fragment('borgbackup::archive ' + params[:reponame] + ' prune ' + params[:archive_name]) }
+        it { is_expected.not_to contain_concat__fragment("borgbackup::archive #{params[:reponame]} prune #{params[:archive_name]}") }
       end
     end
   end

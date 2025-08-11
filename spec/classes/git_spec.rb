@@ -1,11 +1,11 @@
-
+# frozen_string_literal: true
 
 require 'spec_helper'
 
 describe 'borgbackup::git' do
   let(:node) { 'myhost.somewhere.com' }
   let :default_params do
-    { packages: ['git', 'gnupg'],
+    { packages: %w[git gnupg],
       gpg_keys: {},
       gpg_home: '/etc/borgbackup/.gnupg',
       git_home: '/etc/borgbackup/git' }
@@ -36,11 +36,12 @@ describe 'borgbackup::git' do
       is_expected.to contain_exec('commit git repo')
         .with_cwd(params[:git_home])
     }
+
     it { is_expected.to contain_package('gnupg') }
     it { is_expected.to contain_package('git') }
 
     it {
-      is_expected.to contain_file(params[:git_home] + '/myhost.somewhere.com')
+      is_expected.to contain_file("#{params[:git_home]}/myhost.somewhere.com")
         .with_ensure('directory')
         .with_owner('root')
         .with_group('root')
@@ -64,10 +65,11 @@ describe 'borgbackup::git' do
             .with_command(%r{^git init })
         }
       end
+
       context 'with remote git repo' do
         let :params do
           default_params.merge(
-            gitrepo: 'somewhere/gitrepo',
+            gitrepo: 'somewhere/gitrepo'
           )
         end
 
@@ -89,6 +91,7 @@ describe 'borgbackup::git' do
           is_expected.to contain_exec('pull git repo')
             .with_cwd(params[:git_home])
         }
+
         it {
           is_expected.to contain_exec('push git repo')
             .with_cwd(params[:git_home])
