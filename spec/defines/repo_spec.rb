@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'borgbackup::repo' do
@@ -20,28 +22,28 @@ describe 'borgbackup::repo' do
     it { is_expected.to contain_class('borgbackup') }
 
     it {
-      is_expected.to contain_concat('/etc/borgbackup/repo_' + params[:reponame] + '.sh')
+      is_expected.to contain_concat("/etc/borgbackup/repo_#{params[:reponame]}.sh")
         .with_owner('root')
         .with_group('root')
         .with_mode('0700')
     }
 
     it {
-      is_expected.to contain_concat__fragment('borgbackup::repo ' + params[:reponame] + ' header')
-        .with_target('/etc/borgbackup/repo_' + params[:reponame] + '.sh')
+      is_expected.to contain_concat__fragment("borgbackup::repo #{params[:reponame]} header")
+        .with_target("/etc/borgbackup/repo_#{params[:reponame]}.sh")
         .with_order('00-header')
     }
 
     it {
-      is_expected.to contain_concat__fragment('borgbackup::repo ' + params[:reponame] + ' footer')
-        .with_target('/etc/borgbackup/repo_' + params[:reponame] + '.sh')
+      is_expected.to contain_concat__fragment("borgbackup::repo #{params[:reponame]} footer")
+        .with_target("/etc/borgbackup/repo_#{params[:reponame]}.sh")
         .with_order('99-footer')
     }
 
     it {
-      is_expected.to contain_exec('initialize borg repo ' + params[:reponame])
-        .with_command('/etc/borgbackup/repo_' + params[:reponame] + '.sh init')
-        .with_unless('/etc/borgbackup/repo_' + params[:reponame] + '.sh list')
+      is_expected.to contain_exec("initialize borg repo #{params[:reponame]}")
+        .with_command("/etc/borgbackup/repo_#{params[:reponame]}.sh init")
+        .with_unless("/etc/borgbackup/repo_#{params[:reponame]}.sh list")
     }
   end
 
@@ -53,7 +55,7 @@ describe 'borgbackup::repo' do
         let(:title) { 'mytitle' }
         let :params do
           default_params.merge(
-            reponame: title,
+            reponame: title
           )
         end
 
@@ -71,7 +73,7 @@ describe 'borgbackup::repo' do
         let :params do
           default_params.merge(
             reponame: title,
-            archives: { 'arch' => {} },
+            archives: { 'arch' => {} }
           )
         end
 
@@ -88,7 +90,7 @@ describe 'borgbackup::repo' do
         let :params do
           default_params.merge(
             reponame: title,
-            crontab_define: '',
+            crontab_define: ''
           )
         end
 
@@ -106,12 +108,13 @@ describe 'borgbackup::repo' do
               'user'    => 'someuser',
               'hour'    => 12,
               'minute'  => 42,
-            } },
+            } }
           )
         end
 
         it_behaves_like 'borgbackup::repo shared examples'
         it { is_expected.not_to contain_cron('borgbackup run my_cron') }
+
         it {
           is_expected.to contain_cron('mycustomcron')
             .with_command('/bin/true')

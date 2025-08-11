@@ -1,4 +1,4 @@
-
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -50,7 +50,7 @@ describe 'borgbackup::server' do
       context 'with non default backuproot' do
         let :params do
           default_params.merge(
-            backuproot: '/tmp/backupdir',
+            backuproot: '/tmp/backupdir'
           )
         end
 
@@ -60,7 +60,7 @@ describe 'borgbackup::server' do
       context 'with not creating user' do
         let :params do
           default_params.merge(
-            user_ensure: false,
+            user_ensure: false
           )
         end
 
@@ -72,7 +72,7 @@ describe 'borgbackup::server' do
       describe 'with authorized-keys' do
         let :params do
           default_params.merge(
-            authorized_keys: { 'firstkey' => { 'keys' => ['key'] } },
+            authorized_keys: { 'firstkey' => { 'keys' => ['key'] } }
           )
         end
 
@@ -83,6 +83,7 @@ describe 'borgbackup::server' do
             .with_backuproot(params[:backuproot])
             .with_keys('["key"]')
         }
+
         it {
           is_expected.to contain_concat(params[:authorized_keys_target])
             .with_owner(params[:borguser])
@@ -95,7 +96,7 @@ describe 'borgbackup::server' do
         let :params do
           default_params.merge(
             authorized_keys_define: 'file',
-            authorized_keys: { '/etc/borgbackup/.ssh/authorized-keys' => { 'owner' => 'myowner', 'group' => 'mygroup' } },
+            authorized_keys: { '/etc/borgbackup/.ssh/authorized-keys' => { 'owner' => 'myowner', 'group' => 'mygroup' } }
           )
         end
 

@@ -1,4 +1,4 @@
-
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -33,7 +33,7 @@ describe 'borgbackup::authorized_key' do
           default_params.merge(
             reponame: title,
             backuproot: 'mybackuproot',
-            target: 'mytarget',
+            target: 'mytarget'
           )
         end
 
@@ -47,7 +47,7 @@ describe 'borgbackup::authorized_key' do
             reponame: title,
             backuproot: 'mybackuproot',
             target: 'mytarget',
-            keys: ['rsa mykey'],
+            keys: ['rsa mykey']
           )
         end
 

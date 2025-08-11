@@ -1,4 +1,4 @@
-
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -30,11 +30,11 @@ describe 'borgbackup::install' do
         end
       end
 
-      context 'with non  defaults' do
+      context 'with non defaults' do
         let :params do
           default_params.merge(
             packages: ['backup-whatever'],
-            package_ensure: 'actual',
+            package_ensure: 'actual'
           )
         end
 
