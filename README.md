@@ -1,10 +1,5 @@
 # borg backup puppet module
 
-[![Build Status](https://travis-ci.org/cirrax/puppet-borgbackup.svg?branch=master)](https://travis-ci.org/cirrax/puppet-borgbackup)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/cirrax/borgbackup.svg?style=flat-square)](https://forge.puppetlabs.com/cirrax/borgbackup)
-[![Puppet Forge](https://img.shields.io/puppetforge/dt/cirrax/borgbackup.svg?style=flat-square)](https://forge.puppet.com/cirrax/borgbackup)
-[![Puppet Forge](https://img.shields.io/puppetforge/e/cirrax/borgbackup.svg?style=flat-square)](https://forge.puppet.com/cirrax/borgbackup)
-[![Puppet Forge](https://img.shields.io/puppetforge/f/cirrax/borgbackup.svg?style=flat-square)](https://forge.puppet.com/cirrax/borgbackup)
 
 
 #### Table of Contents
