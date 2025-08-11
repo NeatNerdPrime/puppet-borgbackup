@@ -1,7 +1,13 @@
 # Changelog cirrax-borgbackup
 
 
-## Version: 1.8.0 (11 August 2025)
+## Version: 1.8.1 (11 August 2025)
+* add releases ([84e9daf](https://github.com/cirrax/puppet-borgbackup/commit/84e9dafaf7c1fea7dc26bddc5e517a73eb4822c4))
+
+## Version: v1.8.0 (11 August 2025)
+* Merge branch 'github' ([319b64b](https://github.com/cirrax/puppet-borgbackup/commit/319b64bae5409baac7cf60c11dca0ceb73a35549))
+* Release v1.8.0 ([66fd2cf](https://github.com/cirrax/puppet-borgbackup/commit/66fd2cfef7580e9a6c5115a0c5d68defbff10ff2))
+* Merge pull request #9 from cirrax/dev_cirrax ([06ab040](https://github.com/cirrax/puppet-borgbackup/commit/06ab0409a2b9c81329064d13fdcc00f024bdb972))
 * include class borgbackup::install in borgbackup::server ([43016e5](https://github.com/cirrax/puppet-borgbackup/commit/43016e56a20d68b31b01d24ff48567583a973c83))
 * add debian trixie to metadata ([97de6f5](https://github.com/cirrax/puppet-borgbackup/commit/97de6f5e3d565356746f3611c343c09fa497ef19))
 * let rubocop fix ([96040ba](https://github.com/cirrax/puppet-borgbackup/commit/96040ba37760e003fc239418921a9345e0651d38))
