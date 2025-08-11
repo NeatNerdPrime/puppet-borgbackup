@@ -19,6 +19,10 @@ describe 'borgbackup::server' do
     it { is_expected.to compile.with_all_deps }
 
     it {
+      is_expected.to contain_class('borgbackup::install')
+    }
+
+    it {
       is_expected.to contain_file(params[:backuproot])
         .with_ensure('directory')
         .with_owner(params[:borguser])

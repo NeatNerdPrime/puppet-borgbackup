@@ -43,6 +43,8 @@ class borgbackup::server (
   Hash    $authorized_keys          = {},
   Hash    $authorized_keys_defaults = {},
 ) {
+  include borgbackup::install
+
   if $user_ensure {
     user { $borguser:
       ensure     => present,
